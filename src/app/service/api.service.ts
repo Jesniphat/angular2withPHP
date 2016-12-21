@@ -42,7 +42,7 @@ export class ApiService {
         if(body.nologin){
             console.log("go to new login.");
             window.location.href = "#/login";
-            return body || { }; // ใส่ไปก่อนค่อนเอาออกทีหลัง
+            return body || { }; 
         }else{
             // console.log("body = ", body);
             return body || { };

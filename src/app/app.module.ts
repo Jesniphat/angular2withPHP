@@ -7,12 +7,15 @@ import { MenuModule, MenubarModule, PanelMenuModule, MenuItem, InputTextModule,
 
 import { routing } from "./routes";
 
+import { SharedModule } from "./shared/shared.module";
 import { AppComponent } from './app.component';
 import { SidemenuComponent } from './menu/sidemenu/sidemenu.component';
 import { TopbarComponent } from './menu/topbar/topbar.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { SharedModule } from "./shared/shared.module";
+import { SettingModule } from './components/setting/setting.module';
+import { CategoryModule } from './components/category/category.module';
+import { ProductModule } from './components/product//product.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { SharedModule } from "./shared/shared.module";
     ////////////////// page module ////////////////////
     SharedModule.forRoot(),
     LoginModule,
-    HomeModule
+    HomeModule,
+    SettingModule,
+    CategoryModule,
+    ProductModule
   ],
   // providers:[
   //   ApiService,

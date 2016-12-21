@@ -42,7 +42,7 @@ export class AppComponent {
   }
 
   private checkLoginDoneAction(res:any){ // เดี่ยวไปใช้ service
-    console.log(res);
+    // console.log(res);
     if(res.data){
         this.hiddenLogin = false;
         this.myClass10 = true;

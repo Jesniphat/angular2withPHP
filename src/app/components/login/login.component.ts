@@ -10,7 +10,8 @@ import { RootscopeService } from "../../service/rootscope.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  error: string;
+  private msgs:any;
+  private error: any;
   response: {};
   password: any;
   username: any;
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
     this.apiService
       .post("/api/login", param)
       .subscribe(
-          res => this.loginDoneAction(res),
+          (res) => this.loginDoneAction(res),
           (error) => this.loginErrorAction(error)
       )
   }
@@ -66,7 +67,9 @@ export class LoginComponent implements OnInit {
         window.location.href = "#/home";
         // window.location.reload();
     } else {
-        console.log("can't login");
+        console.log("can't login = ", res.error);
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Oops!', detail:res.error});
     }
   }
 
