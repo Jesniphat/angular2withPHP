@@ -37,7 +37,7 @@ export class StaffSettingComponent implements OnInit {
       if(this.storage.getItem('logindata')){
           let logindata = JSON.parse(this.storage.getItem('logindata'));
           this.staffData = logindata;
-          console.log("staff = ", this.staffData);
+        //   console.log("staff = ", this.staffData);
 
           this.staff.staffName = this.staffData.display_name;
           this.staff.staffUserName = this.staffData.login_name;

@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MenuModule, MenubarModule, PanelMenuModule, MenuItem, InputTextModule, 
          MessagesModule, GrowlModule } from 'primeng/primeng';
 
-import { routing } from "./routes";
+import { routing } from "./app.routing";
 
 import { SharedModule } from "./shared/shared.module";
 import { AppComponent } from './app.component';
