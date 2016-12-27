@@ -6,21 +6,10 @@ import { RootscopeService } from "../service/rootscope.service";
 import { CookieService } from "../service/cookie.service";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports:      [ CommonModule ],
   declarations: [],
-  exports:      [ /* Export them */ ]
+  exports:      [ /* Export them */ ],
+  providers:    [ ApiService, RootscopeService, CookieService ]
 })
-export class SharedModule { 
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                ApiService,
-                RootscopeService,
-                CookieService
-            ]
-        };
-    }
-}
+
+export class SharedModule {}

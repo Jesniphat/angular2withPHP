@@ -15,6 +15,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { routing } from "./product.routing";
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductManageComponent } from './product-manage/product-manage.component';
+import { ProductPicComponent } from './product-pic/product-pic.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,6 @@ import { ProductManageComponent } from './product-manage/product-manage.componen
 
     routing
   ],
-  declarations: [ProductListComponent, ProductManageComponent]
+  declarations: [ProductListComponent, ProductManageComponent, ProductPicComponent]
 })
 export class ProductModule { }

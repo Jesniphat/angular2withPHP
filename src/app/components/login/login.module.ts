@@ -18,7 +18,7 @@ import { routing } from "./login.routing";
     MessagesModule,
     GrowlModule,
     routing,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [ 
     LoginComponent 

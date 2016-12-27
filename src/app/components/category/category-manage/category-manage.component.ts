@@ -102,6 +102,8 @@ export class CategoryManageComponent implements OnInit {
           this.reset();
       } else {
           console.log("can't save");
+          this.msgs = [];
+          this.msgs.push({severity:'warn', summary:'Success!', detail:'บันทึกข้อมูลไม่สำเร็จ'});
       }
   }
 
@@ -110,7 +112,7 @@ export class CategoryManageComponent implements OnInit {
       console.log("error = ", this.error);
       // this.toastr.warning('บันทึกข้อมูลไม่สำเร็จ', 'Oops!');
       this.msgs = [];
-      this.msgs.push({severity:'success', summary:'Success!', detail:'บันทึกข้อมูลสำเร็จ'});
+      this.msgs.push({severity:'warn', summary:'Success!', detail:'บันทึกข้อมูลไม่สำเร็จ'});
       setTimeout(() => this.error = null, 4000);
   }
 

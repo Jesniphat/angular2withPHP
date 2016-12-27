@@ -9,11 +9,13 @@ export class ApiService {
     private prod:boolean = false; 
     public api:string = "http://localhost/project_shop_api/api.php";
     public upl:string = "http://localhost/project_shop_api/upload.php";
+    public img:string = "http://localhost/project_shop_api/read-img.php?id=";
 
   constructor(private http: Http) { 
       if(!this.prod){
           this.api = "";
           this.upl = "";
+        //   this.img = "?id=";
       }
   }
 

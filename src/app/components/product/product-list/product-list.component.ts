@@ -58,8 +58,8 @@ export class ProductListComponent implements OnInit {
 
   private viwe_product_pic(data:any){
       let link: any;
-      console.log("Product Pic = ", data);
-      link = ['/product_list/product_pic/', data._id];
+    //   console.log("Product Pic = ", data);
+      link = ['/product_list/product_pic/', data.id];
       this.router.navigate(link);
   }
 

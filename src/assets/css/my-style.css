@@ -37,7 +37,7 @@ html {
     text-decoration: none;
 }
 
-.ui-panelmenu .ui-panelmenu-header.ui-state-active, .ui-panelmenu .ui-panelmenu-header.ui-state-active a {
+/*.ui-panelmenu .ui-panelmenu-header.ui-state-active, .ui-panelmenu .ui-panelmenu-header.ui-state-active a {
   border-color: #3E474B;
   background: #20272A;
   color: #889597;
@@ -74,7 +74,7 @@ html {
 .ui-panelmenu .ui-menuitem-link:hover {
   background: #101517;
   border-radius: 3px; 
-} 
+} */
 
 .required-message {
   background-color: none;

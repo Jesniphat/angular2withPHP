@@ -24,7 +24,7 @@ import { StaffCreateComponent } from './staff-create/staff-create.component';
     GrowlModule,
     PanelModule,
     ConfirmDialogModule,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [StaffSettingComponent, StaffCreateComponent],
   bootstrap:    [ StaffSettingComponent ]

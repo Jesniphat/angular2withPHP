@@ -15,7 +15,7 @@ import { SharedModule } from "../../shared/shared.module";
     InputTextModule,
     routing,
     FileUploadModule,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [
     HomeComponent

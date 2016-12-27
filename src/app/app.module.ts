@@ -35,7 +35,7 @@ import { ProductModule } from './components/product//product.module';
     MessagesModule,
     GrowlModule,
     ////////////////// page module ////////////////////
-    SharedModule.forRoot(),
+    SharedModule,
     LoginModule,
     HomeModule,
     SettingModule,

@@ -34,7 +34,7 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
     MessagesModule,
     GrowlModule,
     routing,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [
     filterTestPipe,
