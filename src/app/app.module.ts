@@ -15,7 +15,7 @@ import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
 import { SettingModule } from './components/setting/setting.module';
 import { CategoryModule } from './components/category/category.module';
-import { ProductModule } from './components/product//product.module';
+import { ProductModule } from './components/product/product.module';
 
 @NgModule({
   declarations: [
