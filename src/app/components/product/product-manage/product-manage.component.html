@@ -2,6 +2,15 @@
     <form (ngSubmit)="onSubmit()" #productForm="ngForm">
         <div class="ui-g">
             <div class="ui-g-4">
+                <label for="categoryList">Category List:</label>
+                <br/>
+                <p-dropdown id="categoryList" name="categoryList" [options]="categoryList" 
+                    [(ngModel)]="product.category" [style]="{'width':'100%'}">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-4">
                 <label for="productName">Product Name*</label>
                 <br/>
                 <input id="productName" style="width:100%" pInputText [(ngModel)]="product.name" 
@@ -74,11 +83,22 @@
                 <label for="productPic">Product Pictuer</label>
                 <br/>
                 <p-fileUpload id="productPic" name="producPic" [url]="uploadUrl" 
-                    multiple="multiple" accept="image/*" auto="auto" (onUpload)="onUploaded($event)" (onError)="onUploadedError($event)">
+                    multiple="multiple" accept="image/*" auto="auto" 
+                    (onUpload)="onUploaded($event)" (onError)="onUploadedError($event)">
                         <template pTemplate type="content">
-                            <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                            </ul>
+                            <div *ngIf="uploadedFiles.length">
+                                <div class="ui-g" *ngFor="let file of uploadedFiles; let x = index" style="list-style-type:none;">
+                                    <div class="ui-g-2">
+                                        <img style="width: 100px;" [src]="file.productpic_path">
+                                    </div>
+                                    <div class="ui-g-5">
+                                        {{file.productpic_name}}
+                                    </div>
+                                    <div class="ui-g-1" style="text-align:center">
+                                        <i class="fa fa-close" (click)="removeImg(file.id, x)" style="cursor:pointer;"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </template>
                 </p-fileUpload>
             </div>

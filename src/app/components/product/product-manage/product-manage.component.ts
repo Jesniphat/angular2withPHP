@@ -21,15 +21,16 @@ export class ProductManageComponent implements OnInit {
       qty: 0,
       pic_id:<any>[],
       pic_ids:"",
-      staffid: "0"
+      staffid: "0",
+      category:""
   }
-  private statusLists = [{label:'Active', value:'Y'},
-                          {label:'Unactive', value:'N'}];
+  private categoryList = [];
   private selectedStatus:any = "Y";
   private productPicName:any[] = [];
   private uploadedFiles: any[] = [];
   private msgs:any;
   private uploadUrl:string = "/upload/product";
+  private imgLink:string = "";
 
   constructor(
     private router: Router,
@@ -45,6 +46,7 @@ export class ProductManageComponent implements OnInit {
     console.log("product_managet.component");
 
     this.uploadUrl = this.apiService.upl + this.uploadUrl;
+    this.imgLink = this.apiService.img;
 
     if(this.storage.getItem('logindata')){
       let logindata = JSON.parse(this.storage.getItem('logindata'));
@@ -52,12 +54,38 @@ export class ProductManageComponent implements OnInit {
     }
 
     this.product.id = this.route.snapshot.params['id'];
-    console.log("Product Id = ",this.product.id);
+    // console.log("Product Id = ",this.product.id);
+    this.getCategoryList();
     if(this.product.id != "create"){
         this.getProductByid(this.product.id);
     }
+  }
 
-    // this.hideUploadBt();
+  getCategoryList(): Promise<boolean>{
+      return new Promise<boolean>((resolve, reject) => {
+          let param = {}
+          this.apiService
+              .post("/api/category_list",param)
+              .subscribe(
+                data => this.getCategoryListDoneAction(data), // OR this.categoryLists = data.data,
+                error => this.getCategoryListErrorAction(error) 
+              );
+      });
+  }
+
+  getCategoryListDoneAction(res:any){
+      if(res.status == true){
+          for(let i = 0; i < res.data.length; i++){
+              this.categoryList.push({label: res.data[i].cate_name, value: res.data[i].id});
+          }
+          this.product.category = res.data[0].id;
+      }else{
+          console.log("error = ", res.error);
+      }
+  }
+
+  getCategoryListErrorAction(error:any){
+      console.log("error = ", error);
   }
 
   getProductByid(productId:any){
@@ -82,13 +110,18 @@ export class ProductManageComponent implements OnInit {
           this.product.desc = prodResData.product_description;
           this.product.price = prodResData.product_price;
           this.product.qty = prodResData.product_qty;
-          // this.product.pic_id = prodResData.product_pic;
+          this.product.category = prodResData.category_id;
+        //   console.log(prodResData.pic);
 
-          // console.log("this.product = ", this.product);
-          // for( let x = 0; x < prodResData.product_pic.length; x++){
-          //     // this.product.picName.push(prodResData.product_pic[x]);
-          //     this.uploadedFiles.push({name: prodResData.product_pic[x]});
-          // }
+          let pic_name = prodResData.pic;
+
+          if(pic_name.length > 0){
+              for(var z = 0; z < pic_name.length; z++){
+                  pic_name[z].productpic_path = this.imgLink + pic_name[z].productpic_path;
+                  pic_name[z].flag = "u"; 
+              }
+          }
+          this.uploadedFiles = pic_name;
       }   
   }
 
@@ -96,25 +129,26 @@ export class ProductManageComponent implements OnInit {
       console.log(error);
   }
 
-  changeStatus(newValue:any) {
+  changeCategory(newValue:any) {
       console.log(newValue);
-      this.selectedStatus = newValue;
+      this.product.category = newValue;
   }
 
   onUploaded(event:any){
       // console.log("onUploaded = ", event);
       // console.log("get xhr = ", JSON.parse(event.xhr.response));
-      for(let file of event.files) {
-          this.uploadedFiles.push(file);
-      }
       let pic_name = JSON.parse(event.xhr.response);
       if(pic_name.status === true){
-          this.product.pic_id.push(pic_name.data);
+        //   this.product.pic_id.push(pic_name.data.id);
+          pic_name.data.productpic_path = this.imgLink + pic_name.data.productpic_path;
+          pic_name.data.flag = "c";
+          this.uploadedFiles.push(pic_name.data);
       } else {
           console.log("error = ", pic_name.error);
           this.msgs = [];
           this.msgs.push({severity:'warn', summary:'Oops!', detail:'บันทึกรูปภาพไม่สำเร็จกรุณาลองใหม่อีกครั้ง'});
       }
+    //   console.log("File ID = ", this.product.pic_id);
   }
 
   onUploadedError(event:any){
@@ -122,6 +156,10 @@ export class ProductManageComponent implements OnInit {
       this.msgs = [];
       this.msgs.push({severity:'warn', summary:'Oops!', detail:'บันทึกรูปภาพไม่สำเร็จกรุณาลองใหม่อีกครั้ง'});
   }
+
+//   removeUploadingId(event:any){
+//       console.log("Remove = ", event);
+//   }
 
   hideUploadBt(){
     $(this._elRef.nativeElement).find("[label=Upload]").css({"display": "none"});
@@ -151,9 +189,12 @@ export class ProductManageComponent implements OnInit {
 
   saveProduct(){
       console.log("save product");
-      if((this.product.pic_id).length > 0){
-        this.product.pic_ids = (this.product.pic_id).join();
+      if((this.uploadedFiles).length > 0){
+          for(var i = 0; i < this.uploadedFiles.length; i++){
+              (this.product.pic_id).push(this.uploadedFiles[i].id);
+          }
       }
+    //   console.log(this.product);
       this.apiService
           .post("/api/saveproduct", this.product)
           .subscribe(
@@ -186,16 +227,23 @@ export class ProductManageComponent implements OnInit {
       console.log("value submit = ", value);
   }
 
+  removeImg(id:any, index:any){
+      console.log(id);
+      console.log("index = ", index);
+      this.uploadedFiles.splice(index, 1);
+  }
+
   reset(){
       this.product = {
-          id : "",
+          id : "create",
           name: "",
           desc: "",
           price: 0,
           qty: 0,
           pic_id: [],
           staffid: "0",
-          pic_ids: ""
+          pic_ids: "",
+          category: ""
       }
       this.uploadedFiles = [];
   }

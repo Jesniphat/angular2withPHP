@@ -9,7 +9,7 @@ export class ApiService {
     private prod:boolean = false; 
     public api:string = "http://localhost/project_shop_api/api.php";
     public upl:string = "http://localhost/project_shop_api/upload.php";
-    public img:string = "http://localhost/project_shop_api/read-img.php?id=";
+    public img:string = "http://localhost/project_shop_api/";
 
   constructor(private http: Http) { 
       if(!this.prod){
@@ -20,23 +20,21 @@ export class ApiService {
   }
 
     get(url: string):Observable<ResponseData> {
-        return this
-            .http
-            .get( this.api + url)
-            //.map((response: Response) => response.json());
-            .map(this.extractData)
-            .catch(this.handleError);
+        return this.http
+                .get( this.api + url)
+                //.map((response: Response) => response.json());
+                .map(this.extractData)
+                .catch(this.handleError);
     }
 
     post(url: string, param:any):Observable<ResponseData> {
-        return this
-            .http
-            .post(this.api + url, JSON.stringify(param), new RequestOptions({
-                headers: new Headers({"Content-Type": "application/json"})
-            }))
-            //.map((response: Response) => response.json());
-            .map(this.extractData)
-            .catch(this.handleError);
+        return this.http
+                .post(this.api + url, JSON.stringify(param), new RequestOptions({
+                    headers: new Headers({"Content-Type": "application/json"})
+                }))
+                //.map((response: Response) => response.json());
+                .map(this.extractData)
+                .catch(this.handleError);
     }
 
     private extractData(res: Response) {

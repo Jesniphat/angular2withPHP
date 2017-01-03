@@ -8,7 +8,8 @@ import { DataTableModule, ButtonModule,
   InputTextareaModule, DropdownModule,
   FileUploadModule, PanelModule, 
   ConfirmDialogModule, DialogModule, 
-  MessagesModule, GrowlModule } from 'primeng/primeng';
+  MessagesModule, GrowlModule,
+  GalleriaModule } from 'primeng/primeng';
 
 import { SharedModule } from "../../shared/shared.module";
 
@@ -35,6 +36,7 @@ import { ProductPicComponent } from './product-pic/product-pic.component';
     DialogModule, 
     MessagesModule, 
     GrowlModule,
+    GalleriaModule,
 
     SharedModule,
 
