@@ -32,11 +32,10 @@ export class SidemenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Edit',
-                icon: 'fa-edit',
+                label: 'Order',
+                icon: 'fa-cart-plus',
                 items: [
-                    {label: 'Undo', icon: 'fa-mail-forward'},
-                    {label: 'Redo', icon: 'fa-mail-reply'}
+                    {label: 'Order List', icon: 'fa-shopping-cart'}
                 ]
             },
             {

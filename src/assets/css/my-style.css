@@ -84,3 +84,39 @@ html {
 .table-center {
   text-align: center;
 }
+
+/* You can add global styles to this file, and also import other style files */
+
+body .ui-panelmenu .ui-panelmenu-header{
+    background-color:#313B3F;
+}
+
+body .ui-panelmenu .ui-panelmenu-header a {
+    color: #889597;
+}
+
+body .ui-panelmenu .ui-panelmenu-header a:hover {
+    color: #889597;
+    background-color: #20282B;
+}
+
+body .ui-panelmenu .ui-panelmenu-panel {
+    border:none;
+}
+
+body .ui-panelmenu .ui-panelmenu-panel:last-child {
+    border-bottom: none;
+}
+
+body .ui-panelmenu .ui-panelmenu-header.ui-state-active {
+    background-color: #202729;
+}
+
+body .ui-panelmenu .ui-panelmenu-header.ui-state-hover .fa {
+    color: #767b7f;
+}
+
+/*body .ui-widget-content {
+    background-color: none;
+    border: 1px solid #3E474B;
+}*/
