@@ -6,7 +6,7 @@
     <div class="ui-g-12 ui-g-nopad ui-md-2" [hidden]="hiddenLogin" style="background-color: #20272A;">
         <app-sidemenu style="padding:0px;margin-top: 0px;"></app-sidemenu>
     </div>
-    <div class="ui-g-12 ui-g-nopad" [class.ui-md-10]="myClass10">
+    <div class="ui-g-12 ui-g-nopad" [ngClass]="{'ui-md-10': myClass10, 'second': true, 'third': false}">
         <div class="ui-g-12" style="min-height: 594px; background-color:white;">
             <router-outlet></router-outlet>
         </div>

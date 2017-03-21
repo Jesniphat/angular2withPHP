@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MenuModule, MenubarModule, PanelMenuModule, MenuItem, InputTextModule, 
+import { MenuModule, MenubarModule, PanelMenuModule, MenuItem, InputTextModule,
          MessagesModule, GrowlModule } from 'primeng/primeng';
 
 import { routing } from "./app.routing";
@@ -34,8 +34,9 @@ import { ProductModule } from './components/product/product.module';
     PanelMenuModule,
     MessagesModule,
     GrowlModule,
-    ////////////////// page module ////////////////////
+    ////////////////// Service module /////////////////
     SharedModule,
+    ////////////////// page module ////////////////////
     LoginModule,
     HomeModule,
     SettingModule,
